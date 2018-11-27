@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- PAGE settings -->
+  <link rel="icon" href="https://templates.pingendo.com/assets/Pingendo_favicon.ico">
+  <title>Search</title>
+  <meta name="description" content="Free Bootstrap 4 Pingendo Smke template single landing page team">
+  <meta name="keywords" content="Pingendo smke free template bootstrap 4">
+  <!-- CSS dependencies -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="/colorful.css">
+  <!-- Script: Navbar on-top -->
+  <script src="/js/navbar-ontop.js"></script>
+
+</head>
+
+<body>
+  {{>header}}
+  <div class="py-3 pt-5">
+    <div class="container">
+      <h1>Cari Buku</h1>
+      <form action ="/buku" method="post">
+        <div class="row">
+          <div class="col-lg-2" style="">
+            <h2 class="">Keyword</h2>
+          </div>
+          <div class="col-xs-2">
+            <select name="category" class="btn btn-lg btn-primary mt-0">
+              <div class="dropdown-menu">
+                <option class="dropdown-item" value="judul">judul</option>
+                <option class="dropdown-item" value="author">author</option>
+                <option class="dropdown-item" value="penerbit">penerbit</option>
+              </div>
+            </select>
+          </div>
+          <div class="col-md-8 " style="">
+            <div class="form-group">
+              <input type="text" name="keyword" class="form-control form-control-lg w-100" style="	box-shadow: inset 0px 0px 4px  black;">
+            </div>
+          </div>
+          <!-- <form action="" method="POST"> -->
+        </div>
+
+        <div class="row">
+          <div class="col-md-2 offset-md-10">
+            <button type="submit" class="btn btn-lg btn-primary mt-0"> Search </button>
+          </div>
+        </div>
+      </form>
+    </div>
+      <div class="container">
+      {{#if books}}
+      <div class="row">
+        <div class="col-xs-12">
+          <h2> Buku </h2>
+        </div>
+      </div>
+      {{#each_upto books 5}}
+      <div class="row">
+        <div class="col-md-2">
+          <img src="/assets/notebook.png" alt="stock image" style="max-width:70%;max-height:70%; display: block; margin: auto; vertical-align: middle">
+        </div>
+        <div class="col-md-8">
+          <span> <h6><b>{{judul}}</b></h6> </span>
+          <span>{{author}}</span> <br>
+          <span>genre : {{genre}}</span>
+          <hr>
+          <!-- <li><input type="checkbox" name="check" value="{{this}}" /> {{this}} </li> -->
+        </div>
+        <div class="col-md-2">
+          <span> <a href="/buku/{{_id}}" class="btn btn-lg btn-primary mt-0">lihat buku</a> </span>
+        </div>
+      </div>
+      {{/each_upto}}
+      <br>
+      {{/if}}
+    </div>
+  </div>
+</div>
+</div>
+  {{>footer}}
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <!-- Script: Smooth scrolling between anchors in the same page -->
+  <script src="/js/smooth-scroll.js"></script>
+  <!--   <pingendo onclick="window.open('https://pingendo.com/', '_blank')" style="cursor:pointer;position: fixed;bottom: 20px;right:20px;padding:4px;background-color: #00b0eb;border-radius: 8px; width:220px;display:flex;flex-direction:row;align-items:center;justify-content:center;font-size:14px;color:white">Made with Pingendo Free&nbsp;&nbsp;<img src="https://pingendo.com/site-assets/Pingendo_logo_big.png" class="d-block" alt="Pingendo logo" height="16"></pingendo> -->
+</body>
+
+</html>

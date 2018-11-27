@@ -1,0 +1,34 @@
+<header>
+  <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#"><b>The BiblioTech</b></a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar3SupportedContent" aria-controls="navbar3SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+      <div class="collapse navbar-collapse text-center justify-content-end" id="navbar3SupportedContent">
+      </div>
+    </div>
+  </nav>
+  <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#"><b>The BiblioTech</b></a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar3SupportedContent" aria-controls="navbar3SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+      <div class="collapse navbar-collapse text-center justify-content-end" id="navbar3SupportedContent">
+        <a class="btn navbar-btn btn-outline-light btn-lg" href="/">Home</a>
+        <a class="btn navbar-btn btn-outline-light btn-lg" href="/about">About</a>
+        <a class="btn navbar-btn btn-outline-light btn-lg" href="/anggota/logout">Logout</a>
+        {{#if isLogIn}}
+        <a class="btn navbar-btn btn-outline-light btn-lg" href="/anggota/logout">log out</button>
+        {{/if}}
+      </div>
+    </div>
+  </nav>
+  <div class="py-5 text-center cover d-flex flex-column bg-dark">
+    <div class="my-auto container-fluid">
+      <div class="row">
+        <div class="mx-auto col-lg-12 col-md-12">
+          <h1 class="display-1 mb-0 mt-5 big-title d-flex justify-content-center">The BiblioTech</h1>
+          <h3 class="mb-4"><b>Meminjam buku tidak pernah semudah ini</b></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</header><!-- /header -->
