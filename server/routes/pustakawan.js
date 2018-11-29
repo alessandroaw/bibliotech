@@ -35,7 +35,8 @@ router.post('/login', (req, res) => {
       // return res.redirect('pustakawan/profile');
     }).catch((e) => {
       // console.log(4);
-      res.status(400).send();
+      e = 'Login gagal :(';
+      res.status(400).render('error.hbs',{e});
     });
 
   } else {
@@ -103,7 +104,8 @@ router.get('/observe', (req, res) => {
     console.log(pinjam);
     res.render('pemantauan.hbs', {pinjam});
   }).catch((e) => {
-    res.status(400).send();
+    e = 'Bad Request :(';
+    res.status(400).render('error.hbs',{e});
   });
 });
 
@@ -125,7 +127,8 @@ router.post('/return/:id', (req, res) => {
     console.log('ini ', doc);
     res.redirect('/pustakawan/observe');
   }).catch((e) => {
-    res.status(400).send(e);
+    e = 'Bad Request :('
+    res.status(400).render('error.hbs',{e});
   });
 
 });

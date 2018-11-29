@@ -29,7 +29,8 @@ router.post('/login', (req, res) => {
       req.session.userId = anggota._id;
       return res.redirect('/buku');
     }).catch((e) => {
-      res.status(400).send();
+      e = 'Anggota tidak ditemukan :(';
+      res.status(400).render('error.hbs',{e});
     });
 
   } else {
@@ -43,10 +44,8 @@ router.post('/login', (req, res) => {
 router.post('/signup', (req, res, next) => {
   // confirm that anggota typed same password twice
   if (req.body.password !== req.body.passwordConf) {
-    var err = new Error('Passwords do not match.');
-    err.status = 400;
-    res.send("passwords dont match");
-    return next(err);
+    var e = 'passwords tidak sama :(';
+    res.status(400).render('error.hbs',{e});
   }
 
   if (req.body.email &&
@@ -72,9 +71,8 @@ router.post('/signup', (req, res, next) => {
     });
 
   } else {
-    var err = new Error('All fields required.');
-    err.status = 400;
-    return next(err);
+    var e = 'All fields required.';
+    res.status(400).render('error.hbs',{e});
   }
 })
 
@@ -96,7 +94,7 @@ router.get('/logout', (req, res, next) => {
       }
     });
   } else {
-    res.statis(400).send('<h1>You are not logged in yet, you need to log in to log out</h1>')
+    res.status(400).send('<h1>You are not logged in yet, you need to log in to log out</h1>')
   }
 });
 
