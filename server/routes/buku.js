@@ -59,7 +59,9 @@ router.get('/:id', authenticate, (req, res) => {
   var reviewer = [];
 
   Buku.findById(id).then((book) => {
-    Review.find({_idBuku: id}).then((reviews) => {
+    Review.find({_idBuku: id})
+    .populate('_idAnggota')
+    .then((reviews) => {
       res.render('databuku.hbs', {book, nama, reviews});
     });
   }).catch((e) => {

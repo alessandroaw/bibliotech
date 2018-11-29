@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {Pustakawan} = require('../models/pustakawan');
+const {Buku} = require('../models/buku');
 const {Pinjam} = require('../models/pinjam');
 const path = require('path');
 const _ = require('lodash');
@@ -109,15 +110,20 @@ router.get('/observe', (req, res) => {
 router.post('/return/:id', (req, res) => {
   var id = req.params.id;
   console.log('ID Buku = ',id);
-
-  Pinjam.findByIdAndUpdate(id,{$set:{isDikembalikan:true, tanggalPengembalian: new Date()           }},{returnOriginal:false}).then((doc) => {
+  date = new Date();
+  Pinjam.findByIdAndUpdate(
+    id,{
+    $set:{
+      isDikembalikan:true,
+      tanggalPengembalian: date
+    }
+  },{returnOriginal:false}).then((doc) => {
+    console.log(doc._idBuku);
+    Buku.findByIdAndUpdate(doc._idBuku,{$inc:{stok:1}}).then((buku) => {
+      console.log(buku);
+    });
     console.log('ini ', doc);
-    console.log('BUKU');
-    Buku.findByIdAndUpdate(doc._idBuku,{$inc:{stok:1}}).then((book) => {
-      console.log('BUKU');
-      console.log('buku : ', buku);
-    })
-    res.send('SUCCESS');
+    res.redirect('/pustakawan/observe');
   }).catch((e) => {
     res.status(400).send(e);
   });
