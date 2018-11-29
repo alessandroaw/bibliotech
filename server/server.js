@@ -49,6 +49,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //hbs initialization
 hbs.registerPartials(path.join(__dirname, '../views/partials'));
 hbs.registerHelper('getCurrentYear', () => {return new Date().getFullYear()});
+hbs.registerHelper('gz', (value) => {return (value > 0)});
 hbs.registerHelper('each_upto', function(ary, max, options) {
     if(!ary || ary.length == 0)
         return options.inverse(this);
@@ -58,17 +59,6 @@ hbs.registerHelper('each_upto', function(ary, max, options) {
         result.push(options.fn(ary[i]));
     return result.join('');
 });
-hbs.registerHelper('getNamaAnggota', (id) => {
-	// return 'nama'
-	Anggota.findById(id).then((anggota) => {
-		var nama = anggota.nama;
-		return nama;
-	}).catch((e) => {
-		console.log(e);
-		return 'nama';
-	})
-});
-hbs.registerHelper('isLogIn', () => {return req.session != null});
 
 // set view engine
 app.set('view engine', 'hbs');

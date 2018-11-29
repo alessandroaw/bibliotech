@@ -69,7 +69,7 @@ router.get('/:id', authenticate, (req, res) => {
   });
 });
 
-router.post('/:id/pinjam', authenticate, (req, res) => {
+router.get('/:id/pinjam', authenticate, (req, res) => {
   var pinjam = new Pinjam({
     _idAnggota:req.session.userId,
     _idBuku:req.params.id,

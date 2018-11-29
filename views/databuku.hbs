@@ -35,9 +35,13 @@
             <div class="blockquote">
               <h5 class="mb-0">Rating : {{rating}}/10</h5>
             </div>
-            <form class="form-group" action="/buku/{{book._id}}/pinjam" method="post">
-              <button class="btn btn-primary m-2 btn-lg py-2 btn-block" href="/pinjam"><b>Pinjam</b></button>
-            </form>
+            <div class="form-group">
+              {{#if (gz book.stok)}}
+              <a class="btn btn-primary m-2 btn-lg py-2 btn-block" href="/buku/{{book._id}}/pinjam"><b>Pinjam</b></a>
+              {{else}}
+                <a class="btn btn-primary m-2 btn-lg py-2 btn-block" href="#"><b>Semua buku telah dipinjam</b></a>
+              {{/if}}
+            </div>
           </div>
         </div>
       </div>

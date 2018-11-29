@@ -98,16 +98,4 @@ router.get('/logout', (req, res, next) => {
   }
 });
 
-  //
-  // router.get('/search', authenticate, (req, res) => {
-  //   var keyword = new RegExp(".*"+"kimba"+".*","i");
-  //   console.log(keyword);
-  //   Buku.find({"author": keyword}).then((books) => {
-  //     res.render('search.hbs', { books });
-  //   })
-  //   .catch((e) => {
-  //     res.render('search.hbs', { books });
-  //   });
-  // });
-
-  module.exports = router;
+module.exports = router;
