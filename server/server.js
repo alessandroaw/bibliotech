@@ -49,6 +49,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //hbs initialization
 hbs.registerPartials(path.join(__dirname, '../views/partials'));
 hbs.registerHelper('getCurrentYear', () => {return new Date().getFullYear()});
+hbs.registerHelper('toDateString', (date) => {return date.toDateString()});
 hbs.registerHelper('gz', (value) => {return (value > 0)});
 hbs.registerHelper('each_upto', function(ary, max, options) {
     if(!ary || ary.length == 0)
