@@ -10,16 +10,12 @@ var PustakawanSchema = new mongoose.Schema({
 		minlength: 1,
 		trim: true
 	},
-	email:{
+	username:{
 		type: String,
 		required: true,
 		minlength: 1,
 		trim: true,
 		unique: true,
-		validate:{
-			validator:validator.isEmail,
-			message:"{VALUE} is not a valid email"
-		}
 	},
 	password:{
 			type: String,
@@ -37,12 +33,12 @@ PustakawanSchema.methods.toJSON = function(){
 	var pustakawan = this;
 	var userObject = pustakawan.toObject();
 
-	return _.pick(userObject, ['_id','nama', 'email']);
+	return _.pick(userObject, ['_id','nama', 'username']);
 };
 
-PustakawanSchema.statics.findByCredentials = function (email, password){
+PustakawanSchema.statics.findByCredentials = function (username, password){
 	var Pustakawan = this;
-	return Pustakawan.findOne({email}).then((pustakawan) => {
+	return Pustakawan.findOne({username}).then((pustakawan) => {
 
 		if(!pustakawan){
 			return Promise.reject();

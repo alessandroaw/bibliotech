@@ -22,12 +22,12 @@ const _ = require('lodash');
 // });
 //
 router.post('/login', (req, res) => {
-  var body = _.pick(req.body, ['email', 'password']);
+  var body = _.pick(req.body, ['username', 'password']);
   // console.log(1);
-  if(body.email && body.password){
+  if(body.username && body.password){
     // console.log(2);
     // console.log(body);
-    Pustakawan.findByCredentials(body.email, body.password).then((pustakawan) => {
+    Pustakawan.findByCredentials(body.username, body.password).then((pustakawan) => {
       // console.log(3);
       req.session.userId = pustakawan._id;
       // res.send('<h1>Success</h1>')
@@ -55,13 +55,13 @@ router.post('/signup', (req, res, next) => {
     return next(err);
   }
 
-  if (req.body.email &&
+  if (req.body.username &&
     req.body.nama &&
     req.body.password &&
     req.body.passwordConf) {
 
     var userData = {
-      email: req.body.email,
+      username: req.body.username,
       nama: req.body.nama,
       password: req.body.password,
       passwordConf: req.body.passwordConf,
