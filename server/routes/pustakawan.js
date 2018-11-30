@@ -3,6 +3,7 @@ const router = express.Router();
 const {Pustakawan} = require('../models/pustakawan');
 const {Buku} = require('../models/buku');
 const {Pinjam} = require('../models/pinjam');
+const {authenticatePustakawan} = require('../middleware/authenticatePustakawan')
 const path = require('path');
 const _ = require('lodash');
 // express().use(express.static(path.join(__dirname, '../public')));
@@ -95,7 +96,7 @@ router.get('/profile', (req, res) => {
 });
 
 // GET OBSERVE
-router.get('/observe', (req, res) => {
+router.get('/observe', authenticatePustakawan, (req, res) => {
 
   Pinjam.find({isDikembalikan:false})
   .populate('_idBuku')

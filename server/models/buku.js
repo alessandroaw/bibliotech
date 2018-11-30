@@ -38,6 +38,7 @@ var BukuSchema = new mongoose.Schema({
 		},
   lokasi:{
 			type: String,
+      required: true,
 			default: 'A-3',
       trim: true,
 			minlength: 1,
