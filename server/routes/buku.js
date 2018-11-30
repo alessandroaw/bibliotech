@@ -8,15 +8,16 @@ const {Pinjam} = require('../models/pinjam');
 const path = require('path');
 const _ = require('lodash');
 var {authenticate} = require('../middleware/authenticate');
+var {authenticatePustakawan} = require('../middleware/authenticatePustakawan');
 // express().use(express.static(path.join(__dirname, '../public')));
 var query;
 var notFound;
 
-router.get('/tambah', (req,res) => {
+router.get('/tambah', authenticatePustakawan, (req,res) => {
   res.render('entri.hbs');
 });
 
-router.post('/tambah', (req,res) => {
+router.post('/tambah', authenticatePustakawan, (req,res) => {
   console.log('asdfasdf');
   var body = _.pick(req.body, ['ISBN','judul','author','genre','stok','penerbit','lokasi']);
   var buku = new Buku({
