@@ -12,6 +12,33 @@ var {authenticate} = require('../middleware/authenticate');
 var query;
 var notFound;
 
+router.get('/tambah', (req,res) => {
+  res.render('entri.hbs');
+});
+
+router.post('/tambah', (req,res) => {
+  console.log('asdfasdf');
+  var body = _.pick(req.body, ['ISBN','judul','author','genre','stok','penerbit','lokasi']);
+  var buku = new Buku({
+    ISBN:body.ISBN,
+    judul:body.judul,
+    author:body.author,
+    genre:body.genre,
+    stok:body.stok,
+    penerbit:body.penerbit,
+    lokasi:body.lokasi
+  });
+  console.log(buku);
+  buku.save().then(() => {
+    console.log('tes');
+    res.redirect('/pustakawan/observe');
+  }).catch((e) => {
+    res.status(400).send(e);
+    // e = 'Bad Request :(';
+    // res.status(400).render('error.hbs',{e});
+  });
+});
+
 router.get('/', authenticate, (req, res) => {
 
   if (query != null) {
@@ -107,5 +134,7 @@ router.post('/:id/review', authenticate, (req, res) => {
   });
 
 });
+
+
 
 module.exports = router;

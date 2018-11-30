@@ -35,9 +35,14 @@ var BukuSchema = new mongoose.Schema({
 			default: 'Penerbit ITB',
       trim: true,
 			minlength: 1,
+		},
+  lokasi:{
+			type: String,
+			default: 'A-3',
+      trim: true,
+			minlength: 1,
 		}
 });
-
 // BukuSchema.statics.findByKeyword = function (category, keyword){
 // 	var Buku = this;
 //
